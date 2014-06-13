@@ -71,4 +71,79 @@ add_action('init', 'meeskond_init');
 		register_post_type('meeskond',$meeskond_args);
 	}
 
+
+	require 'tekstiuudis_func.php';
+
+	add_action('init', 'tekstiuudis_init');
+		function tekstiuudis_init() 
+		{
+			$tekstiuudis_labels = array(
+				'name' => _x('Tekstiuudis', 'post type general name'),
+				'singular_name' => _x('Tekstiuudis', 'post type singular name'),
+				'all_items' => __('Tekstiuudised'),
+				'add_new' => _x('Lisa Uus Tekstiuudis', 'Tekstiuudised'),
+				'add_new_item' => __('Lisa Uus Tekstiuudis'),
+				'edit_item' => __('Muuda Tekstiuudist'),
+				'new_item' => __('Uus Tekstiuudis'),
+				'view_item' => __('Vaata Tekstiuudis'),
+				'search_items' => __('Otsi Tekstiuudiste Seast'),
+				'not_found' =>  __('Ühtegi Tekstiuudist Ei Leitud'),
+				'not_found_in_trash' => __('Ühtegi Tekstiuudist Ei Leitud'), 
+				'parent_item_colon' => ''
+			);
+			$tekstiuudis_args = array(
+				'labels' => $tekstiuudis_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true, 
+				'query_var' => true,
+				'rewrite' => true,
+				'capability_type' => 'post',
+				'hierarchical' => true,
+				'menu_position' => 23,
+				'supports' => array('title', 'editor',  'author', 'thumbnail', 'excerpt' ),
+				'has_archive' => 'tekstiuudis'
+			); 
+			register_post_type('tekstiuudis',$tekstiuudis_args);
+		}
+
+
+
+
+
+	require 'videouudis_func.php';
+
+	add_action('init', 'videouudis_init');
+		function videouudis_init() 
+		{
+			$videouudis_labels = array(
+				'name' => _x('Videouudised', 'post type general name'),
+				'singular_name' => _x('Videouudis', 'post type singular name'),
+				'all_items' => __('Videouudised'),
+				'add_new' => _x('Lisa Uus Videouudis', 'Videouudised'),
+				'add_new_item' => __('Lisa Uus Videouudis'),
+				'edit_item' => __('Muuda Videouudist'),
+				'new_item' => __('Uus Videouudis'),
+				'view_item' => __('Vaata Videouudis'),
+				'search_items' => __('Otsi Videouudiste Seast'),
+				'not_found' =>  __('Ühtegi Videouudist Ei Leitud'),
+				'not_found_in_trash' => __('Ühtegi Videouudist Ei Leitud'), 
+				'parent_item_colon' => ''
+			);
+			$videouudis_args = array(
+				'labels' => $videouudis_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true, 
+				'query_var' => true,
+				'rewrite' => true,
+				'capability_type' => 'post',
+				'hierarchical' => true,
+				'menu_position' => 23,
+				'supports' => array('title', 'editor', 'thumbnail', 'excerpt' ),
+				'has_archive' => 'videouudis'
+			); 
+			register_post_type('videouudis',$videouudis_args);
+		}
+
 ?>
