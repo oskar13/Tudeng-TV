@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require 'toetajad_func.php';
 
 add_action('init', 'toetajad_init');
@@ -33,6 +33,7 @@ add_action('init', 'toetajad_init');
 		); 
 		register_post_type('toetaja',$toetaja_args);
 	}
+
 
 
 
