@@ -12,7 +12,7 @@ $osa_meta_box = array(
 		array(
 			'name' => 'Pealkiri',
 			'desc' => 'Mehaanik;Kaameramees;Jumestaja',
-			'id' => $osa_prefix . 'jobs',
+			'id' => $osa_prefix . 'title',
 			'type' => 'textarea',
 			'std' => ''
 		),
@@ -140,38 +140,12 @@ function my_edit_osa_columns( $columns ) {
 
 	$columns = array(
 		'cb' => '<input type="checkbox" />',
-		'title' => __( 'Pealkiri' ),
-		'osa_link' => __( 'Link' ),
+		'title' => __( 'Pealkiri' )
 	);
 
 	return $columns;
 }
 
-add_filter( 'manage_edit-osa_columns', 'my_edit_osa_columns' ) ;
-
-function my_edit_osa_columns( $columns ) {
-
-	$columns = array(
-		'cb' => '<input type="checkbox" />',
-		'desc' => __( 'Kirjeldus' ),
-		'osa_link' => __( 'Link' ),
-	);
-
-	return $columns;
-}
-
-add_filter( 'manage_edit-osa_columns', 'my_edit_osa_columns' ) ;
-
-function my_edit_osa_columns( $columns ) {
-
-	$columns = array(
-		'cb' => '<input type="checkbox" />',
-		'time' => __( 'Kestvus' ),
-		'osa_link' => __( 'Link' ),
-	);
-
-	return $columns;
-}
 
 
 add_action( 'manage_osa_posts_custom_column', 'my_manage_osa_columns', 10, 2 );

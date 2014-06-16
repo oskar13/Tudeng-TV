@@ -134,38 +134,12 @@ function my_edit_hooaeg_columns( $columns ) {
 	$columns = array(
 		'cb' => '<input type="checkbox" />',
 		'title' => __( 'Pealkiri' ),
-		'hooaeg_link' => __( 'Link' ),
+		'desc' =>  __( 'Kirjeldus' ),
+		'time' => __( 'Aeg' ),
 	);
 
 	return $columns;
 }
-
-add_filter( 'manage_edit-hooaeg_columns', 'my_edit_hooaeg_columns' ) ;
-
-function my_edit_hooaeg_columns( $columns ) {
-
-	$columns = array(
-		'cb' => '<input type="checkbox" />',
-		'title' => __( 'Kirjeldus' ),
-		'hooaeg_link' => __( 'Link' ),
-	);
-
-	return $columns;
-}
-
-add_filter( 'manage_edit-hooaeg_columns', 'my_edit_hooaeg_columns' ) ;
-
-function my_edit_hooaeg_columns( $columns ) {
-
-	$columns = array(
-		'cb' => '<input type="checkbox" />',
-		'title' => __( 'Kestvus' ),
-		'hooaeg_link' => __( 'Link' ),
-	);
-
-	return $columns;
-}
-
 
 
 
