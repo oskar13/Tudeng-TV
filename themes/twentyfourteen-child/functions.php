@@ -109,13 +109,11 @@ add_action('init', 'meeskond_init');
 
 
 
+		require 'videouudis_func.php';
 
-
-	require 'videouudis_func.php';
-
-	add_action('init', 'videouudis_init');
-		function videouudis_init() 
-		{
+		add_action('init', 'videouudis_init');
+			function videouudis_init() 
+			{
 			$videouudis_labels = array(
 				'name' => _x('Videouudised', 'post type general name'),
 				'singular_name' => _x('Videouudis', 'post type singular name'),
@@ -147,6 +145,76 @@ add_action('init', 'meeskond_init');
 		}
 
 
+		require 'hooaeg_func.php';
+
+		add_action('init', 'hooaeg_init');
+		function hooaeg_init() 
+		{
+			$videouudis_labels = array(
+				'name' => _x('Hooajad', 'post type general name'),
+				'singular_name' => _x('Hooaeg', 'post type singular name'),
+				'all_items' => __('Hooajad'),
+				'add_new' => _x('Lisa Uus Hooaeg', 'Hooajad'),
+				'add_new_item' => __('Lisa Uus Hooaeg'),
+				'edit_item' => __('Muuda Hooaega'),
+				'new_item' => __('Uus Hooaeg'),
+				'view_item' => __('Vaata Hooaega'),
+				'search_items' => __('Otsi Hooaegade Seast'),
+				'not_found' =>  __('Ühtegi Hooaega Ei Leitud'),
+				'not_found_in_trash' => __('Ühtegi Hooaega Ei Leitud'), 
+				'parent_item_colon' => ''
+			);
+			$hooaeg_args = array(
+				'labels' => $hooaeg_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true, 
+				'query_var' => true,
+				'rewrite' => true,
+				'capability_type' => 'post',
+				'hierarchical' => true,
+				'menu_position' => 23,
+				'supports' => array('title', 'editor', 'thumbnail', 'excerpt' ),
+				'has_archive' => 'hooaeg'
+			); 
+			register_post_type('hooaeg',$hooaeg_args);
+		}
+
+
+		require 'osa_func.php';
+
+		add_action('init', 'osa_init');
+		function osa_init() 
+		{
+			$videouudis_labels = array(
+				'name' => _x('Hooajad', 'post type general name'),
+				'singular_name' => _x('Osa', 'post type singular name'),
+				'all_items' => __('Osad'),
+				'add_new' => _x('Lisa Uus Osa', 'Osad'),
+				'add_new_item' => __('Lisa Uus Osa'),
+				'edit_item' => __('Muuda Osa'),
+				'new_item' => __('Uus Osa'),
+				'view_item' => __('Vaata Osa'),
+				'search_items' => __('Otsi Osade Seast'),
+				'not_found' =>  __('Ühtegi Osa Ei Leitud'),
+				'not_found_in_trash' => __('Ühtegi Osa Ei Leitud'), 
+				'parent_item_colon' => ''
+			);
+			$osa_args = array(
+				'labels' => $osa_labels,
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_ui' => true, 
+				'query_var' => true,
+				'rewrite' => true,
+				'capability_type' => 'post',
+				'hierarchical' => true,
+				'menu_position' => 23,
+				'supports' => array('title', 'editor', 'thumbnail', 'excerpt' ),
+				'has_archive' => 'osa'
+			); 
+			register_post_type('osa',$osa_args);
+		}
 
 		require 'pu_theme_options.php';
 		/**
