@@ -109,11 +109,13 @@ add_action('init', 'meeskond_init');
 
 
 
-		require 'videouudis_func.php';
 
-		add_action('init', 'videouudis_init');
-			function videouudis_init() 
-			{
+
+	require 'videouudis_func.php';
+
+	add_action('init', 'videouudis_init');
+		function videouudis_init() 
+		{
 			$videouudis_labels = array(
 				'name' => _x('Videouudised', 'post type general name'),
 				'singular_name' => _x('Videouudis', 'post type singular name'),
@@ -284,5 +286,62 @@ add_action('init', 'meeskond_init');
 		    add_settings_field( 'example_textbox2', 'Example Textbox2', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section2', $field_args );
 		}
 
+
+
+/**
+ * Add custom taxonomies
+ *
+ * Additional custom taxonomies can be defined here
+ * http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+function add_custom_taxonomies() {
+	// Add new "Locations" taxonomy to Posts
+	register_taxonomy('saade', 'hooaeg', array(
+	// Hierarchical taxonomy (like categories)
+		'hierarchical' => true,
+	// This array of options controls the labels displayed in the WordPress Admin UI
+		'labels' => array(
+			'name' => _x( 'Saated', 'taxonomy general name' ),
+			'singular_name' => _x( 'Saade', 'taxonomy singular name' ),
+			'search_items' =>  __( 'Otsi Saateid' ),
+			'all_items' => __( 'Kõik Saated' ),
+			'parent_item' => __( 'Parent Location' ),
+			'parent_item_colon' => __( 'Parent Location:' ),
+			'edit_item' => __( 'Muuda Saadet' ),
+			'update_item' => __( 'Uuenda Saadet' ),
+			'add_new_item' => __( 'Lisa Uus Saade' ),
+			'new_item_name' => __( 'Uue Saate Nimi' ),
+			'menu_name' => __( 'Saated' ),
+			),
+    // Control the slugs used for this taxonomy
+		'rewrite' => array(
+      'slug' => 'saated', // This controls the base slug that will display before each term
+      'with_front' => false, // Don't display the category base before "/locations/"
+      'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+      ),
+		));
+}
+add_action( 'init', 'add_custom_taxonomies', 0 );
+
+
+// A callback function to add a custom field to our "presenters" taxonomy  
+function presenters_taxonomy_custom_fields($tag) {  
+   // Check for existing taxonomy meta for the term you're editing  
+    $t_id = $tag->term_id; // Get the ID of the term you're editing  
+    $term_meta = get_option( "taxonomy_term_$t_id" ); // Do the check  
+?>  
+
+<tr class="form-field">  
+    <th scope="row" valign="top">  
+        <label for="presenter_id"><?php _e('WordPress User ID'); ?></label>  
+    </th>  
+    <td>  
+        <input type="text" name="term_meta[presenter_id]" id="term_meta[presenter_id]" size="25" style="width:60%;" value="<?php echo $term_meta['presenter_id'] ? $term_meta['presenter_id'] : ''; ?>"><br />  
+        <span class="description"><?php _e('The Presenter\'s WordPress User ID'); ?></span>  
+    </td>  
+</tr>  
+
+<?php  
+}  
 
 ?>
