@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require 'toetajad_func.php';
 
 add_action('init', 'toetajad_init');
@@ -33,7 +33,6 @@ add_action('init', 'toetajad_init');
 		); 
 		register_post_type('toetaja',$toetaja_args);
 	}
-
 
 
 
@@ -146,5 +145,76 @@ add_action('init', 'meeskond_init');
 			); 
 			register_post_type('videouudis',$videouudis_args);
 		}
+
+
+
+		require 'pu_theme_options.php';
+		/**
+		 * Theme Option Page Example
+		 */
+		function pu_theme_menu()
+		{
+			add_theme_page( 'Veebilehe välimus', 'Veebilehe välimus', 'manage_options', 'pu_theme_options.php', 'pu_theme_page');  
+		}
+		add_action('admin_menu', 'pu_theme_menu');
+
+
+		/**
+		 * Register the settings to use on the theme options page
+		 */
+		add_action( 'admin_init', 'pu_register_settings' );
+
+		/**
+		 * Function to register the settings
+		 */
+		function pu_register_settings()
+		{
+		    // Register the settings with Validation callback
+		    register_setting( 'pu_theme_options', 'pu_theme_options', 'pu_validate_settings' );
+
+		    // Add settings section
+		    add_settings_section( 'pu_text_section', 'Section 1', 'pu_display_section', 'pu_theme_options.php' );
+
+		    // Create textbox field
+		    $field_args = array(
+		      'type'      => 'text',
+		      'id'        => 'pu_textbox',
+		      'name'      => 'pu_textbox',
+		      'desc'      => 'Example of textbox description',
+		      'std'       => '',
+		      'label_for' => 'pu_textbox',
+		      'class'     => 'css_class'
+		    );
+
+		    add_settings_field( 'example_textbox', 'Example Textbox', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
+
+		    // Create textbox field
+		    $field_args = array(
+		      'type'      => 'text',
+		      'id'        => 'pu_textbox3',
+		      'name'      => 'pu_textbox3',
+		      'desc'      => 'Example of textbox description3',
+		      'std'       => '',
+		      'label_for' => 'pu_textbox3',
+		      'class'     => 'css_class3'
+		    );
+
+		    add_settings_field( 'example_textbox3', 'Example Textbox', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
+
+		    add_settings_section( 'pu_text_section2', 'Section 2', 'pu_display_section', 'pu_theme_options.php' );
+
+		    $field_args = array(
+		      'type'      => 'text',
+		      'id'        => 'pu_textbox2',
+		      'name'      => 'pu_textbox2',
+		      'desc'      => 'Example of textbox description2',
+		      'std'       => '',
+		      'label_for' => 'pu_textbox2',
+		      'class'     => 'css_class2'
+		    );
+
+		    add_settings_field( 'example_textbox2', 'Example Textbox2', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section2', $field_args );
+		}
+
 
 ?>
