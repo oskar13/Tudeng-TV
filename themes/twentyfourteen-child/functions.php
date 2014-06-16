@@ -152,7 +152,7 @@ add_action('init', 'meeskond_init');
 		add_action('init', 'hooaeg_init');
 		function hooaeg_init() 
 		{
-			$videouudis_labels = array(
+			$hooaeg_labels = array(
 				'name' => _x('Hooajad', 'post type general name'),
 				'singular_name' => _x('Hooaeg', 'post type singular name'),
 				'all_items' => __('Hooajad'),
@@ -188,8 +188,8 @@ add_action('init', 'meeskond_init');
 		add_action('init', 'osa_init');
 		function osa_init() 
 		{
-			$videouudis_labels = array(
-				'name' => _x('Hooajad', 'post type general name'),
+			$osa_labels = array(
+				'name' => _x('Osad', 'post type general name'),
 				'singular_name' => _x('Osa', 'post type singular name'),
 				'all_items' => __('Osad'),
 				'add_new' => _x('Lisa Uus Osa', 'Osad'),
@@ -324,6 +324,15 @@ function add_custom_taxonomies() {
 add_action( 'init', 'add_custom_taxonomies', 0 );
 
 
+
+
+
+
+
+
+
+
+
 // A callback function to add a custom field to our "presenters" taxonomy  
 function presenters_taxonomy_custom_fields($tag) {  
    // Check for existing taxonomy meta for the term you're editing  
@@ -341,7 +350,31 @@ function presenters_taxonomy_custom_fields($tag) {
     </td>  
 </tr>  
 
+
 <?php  
+}   
+
+
+
+// A callback function to save our extra taxonomy field(s)  
+function save_taxonomy_custom_fields( $term_id ) {  
+    if ( isset( $_POST['term_meta'] ) ) {  
+        $t_id = $term_id;  
+        $term_meta = get_option( "taxonomy_term_$t_id" );  
+        $cat_keys = array_keys( $_POST['term_meta'] );  
+            foreach ( $cat_keys as $key ){  
+            if ( isset( $_POST['term_meta'][$key] ) ){  
+                $term_meta[$key] = $_POST['term_meta'][$key];  
+            }  
+        }  
+        //save the option array  
+        update_option( "taxonomy_term_$t_id", $term_meta );  
+    }  
 }  
 
-?>
+
+// Add the fields to the "presenters" taxonomy, using our callback function  
+add_action( 'presenters_edit_form_fields', 'presenters_taxonomy_custom_fields', 10, 2 );  
+
+// Save the changes made on the "presenters" taxonomy, using our callback function  
+add_action( 'edited_presenters', 'save_taxonomy_custom_fields', 10, 2 );  
