@@ -133,7 +133,6 @@ function meeskond_save_data($post_id) {
 	}
 }
 
-
 add_filter( 'manage_edit-meeskond_columns', 'my_edit_meeskond_columns' ) ;
 
 function my_edit_meeskond_columns( $columns ) {
