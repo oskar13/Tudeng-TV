@@ -414,16 +414,7 @@ add_action( 'create_saade', 'save_taxonomy_custom_meta', 10, 2 );
 
 
 
-
-
-
-
-
-
-
-
-
-
+// WP Admin CSS
 add_action('admin_head', 'my_custom_fonts');
 
 function my_custom_fonts() {
@@ -432,4 +423,16 @@ function my_custom_fonts() {
     	max-width:100px;height:auto;
     };
   </style>';
+
+
+//Add widget area to videouudised
+if ( function_exists('register_sidebar') )
+	register_sidebar(array(
+		'name'=>'Viimati Lisatud',
+		'before_widget' => '<div class="widget anyOtherClassesYouMayHave">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3>',
+		'after_title' => '</h3>',
+	));
+
 }
