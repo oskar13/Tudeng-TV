@@ -2,7 +2,7 @@
 
 
 
-add_image_size( 'custom-post-list-image', X, Y, true );
+add_image_size( 'videouudis-image', 100, 177, true );
 
 $videouudis_prefix = 'videouudis_';
 
@@ -149,6 +149,7 @@ function videouudised_save_data($post_id) {
 }
 
 
+//Create the columns for the wp-admin post list
 add_filter( 'manage_edit-videouudis_columns', 'my_edit_videouudis_columns' ) ;
 
 function my_edit_videouudis_columns( $columns ) {
@@ -156,13 +157,17 @@ function my_edit_videouudis_columns( $columns ) {
 	$columns = array(
 		'cb' => '<input type="checkbox" />',
 		'title' => __( 'Videouudise Nimi' ),
-		'videouudis_link' => __( 'Link' ),
-		'post-thumbnail' => __( 'Pilt' ),
+		'videouudis_link' => __( 'Video URL' ),
+		'thumbnail' => __( 'Pilt' ),
 	);
 
 	return $columns;
 }
 
+
+
+
+//Get data for columns
 add_action( 'manage_videouudis_posts_custom_column', 'my_manage_videouudis_columns', 10, 2 );
 
 function my_manage_videouudis_columns( $column, $post_id ) {
@@ -196,6 +201,9 @@ function my_manage_videouudis_columns( $column, $post_id ) {
 				}
 				echo __('<a href="'.$videouudis_link.'">'.$link_string.'</a>');
 			break;
+		case 'thumbnail':
+			echo get_the_post_thumbnail( $post->ID, 'videouudis-image' );
+			break;
 		default :
 			break;
 	}
@@ -208,11 +216,11 @@ function my_manage_videouudis_columns( $column, $post_id ) {
 
 
 
-add_action('do_meta_boxes', 'change_featured_image_title');
-function change_featured_image_title()
+add_action('do_meta_boxes', 'change_featured_videouudis_image_title');
+function change_featured_videouudis_image_title()
 {
     remove_meta_box( 'postimagediv', 'videouudis', 'side' );
-    add_meta_box('postimagediv', __('Video Pilt'), 'post_thumbnail_meta_box', 'videouudis', 'normal', 'high');
+    add_meta_box('postimagediv', __('Videouudise Pilt'), 'post_thumbnail_meta_box', 'videouudis', 'normal', 'high');
 }
 
 

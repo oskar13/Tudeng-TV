@@ -28,7 +28,7 @@ add_action('init', 'toetajad_init');
 			'capability_type' => 'post',
 			'hierarchical' => true,
 			'menu_position' => 23,
-			'supports' => array('title'/*, 'editor'*/),
+			'supports' => array('title' , 'thumbnail'/*, 'editor'*/),
 			'has_archive' => 'toetaja'
 		); 
 		register_post_type('toetaja',$toetaja_args);
@@ -146,7 +146,7 @@ add_action('init', 'meeskond_init');
 			register_post_type('videouudis',$videouudis_args);
 		}
 
-
+/*
 		require 'hooaeg_func.php';
 
 		add_action('init', 'hooaeg_init');
@@ -181,7 +181,7 @@ add_action('init', 'meeskond_init');
 			); 
 			register_post_type('hooaeg',$hooaeg_args);
 		}
-
+*/
 
 		require 'osa_func.php';
 
@@ -189,7 +189,7 @@ add_action('init', 'meeskond_init');
 		function osa_init() 
 		{
 			$osa_labels = array(
-				'name' => _x('Osad', 'post type general name'),
+				'name' => _x('Saated', 'post type general name'),
 				'singular_name' => _x('Osa', 'post type singular name'),
 				'all_items' => __('Osad'),
 				'add_new' => _x('Lisa Uus Osa', 'Osad'),
@@ -217,6 +217,10 @@ add_action('init', 'meeskond_init');
 			); 
 			register_post_type('osa',$osa_args);
 		}
+
+
+
+
 
 		require 'pu_theme_options.php';
 		/**
@@ -288,6 +292,13 @@ add_action('init', 'meeskond_init');
 
 
 
+
+
+
+
+
+
+
 /**
  * Add custom taxonomies
  *
@@ -295,8 +306,8 @@ add_action('init', 'meeskond_init');
  * http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
 function add_custom_taxonomies() {
-	// Add new "Locations" taxonomy to Posts
-	register_taxonomy('saade', 'hooaeg', array(
+	// Add new "Saated" taxonomy to Posts
+	register_taxonomy('saade', 'osa', array(
 	// Hierarchical taxonomy (like categories)
 		'hierarchical' => true,
 	// This array of options controls the labels displayed in the WordPress Admin UI
@@ -315,10 +326,12 @@ function add_custom_taxonomies() {
 			),
     // Control the slugs used for this taxonomy
 		'rewrite' => array(
-      'slug' => 'saated', // This controls the base slug that will display before each term
-      'with_front' => false, // Don't display the category base before "/locations/"
-      'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
-      ),
+		'slug' => 'saade', // This controls the base slug that will display before each term
+		'with_front' => false, // Don't display the category base before "/saated/"
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'hierarchical' => true // This will allow URL's like "/saated/fookus/hooaeg-1/"
+		),
 		));
 }
 add_action( 'init', 'add_custom_taxonomies', 0 );
@@ -333,48 +346,55 @@ add_action( 'init', 'add_custom_taxonomies', 0 );
 
 
 
-// A callback function to add a custom field to our "presenters" taxonomy  
-function presenters_taxonomy_custom_fields($tag) {  
-   // Check for existing taxonomy meta for the term you're editing  
-    $t_id = $tag->term_id; // Get the ID of the term you're editing  
-    $term_meta = get_option( "taxonomy_term_$t_id" ); // Do the check  
-?>  
 
-<tr class="form-field">  
-    <th scope="row" valign="top">  
-        <label for="presenter_id"><?php _e('WordPress User ID'); ?></label>  
-    </th>  
-    <td>  
-        <input type="text" name="term_meta[presenter_id]" id="term_meta[presenter_id]" size="25" style="width:60%;" value="<?php echo $term_meta['presenter_id'] ? $term_meta['presenter_id'] : ''; ?>"><br />  
-        <span class="description"><?php _e('The Presenter\'s WordPress User ID'); ?></span>  
-    </td>  
-</tr>  
+// Add term page
+function ttv_taxonomy_add_new_meta_field() {
+	// this will add the custom meta field to the add new term page
+	?>
+	<div class="form-field">
+		<label for="term_meta[custom_term_meta]"><?php _e( 'Example meta field', 'ttv' ); ?></label>
+		<input type="text" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" value="">
+		<p class="description"><?php _e( 'Enter a value for this field','ttv' ); ?></p>
+	</div>
+<?php
+}
+add_action( 'saade_add_form_fields', 'ttv_taxonomy_add_new_meta_field', 10, 2 );
 
 
-<?php  
-}   
+// Edit term page
+function ttv_taxonomy_edit_meta_field($term) {
+ 
+	// put the term ID into a variable
+	$t_id = $term->term_id;
+ 
+	// retrieve the existing value(s) for this meta field. This returns an array
+	$term_meta = get_option( "taxonomy_$t_id" ); ?>
+	<tr class="form-field">
+	<th scope="row" valign="top"><label for="term_meta[custom_term_meta]"><?php _e( 'Example meta field', 'ttv' ); ?></label></th>
+		<td>
+			<input type="text" name="term_meta[custom_term_meta]" id="term_meta[custom_term_meta]" value="<?php echo esc_attr( $term_meta['custom_term_meta'] ) ? esc_attr( $term_meta['custom_term_meta'] ) : ''; ?>">
+			<p class="description"><?php _e( 'Enter a value for this field','ttv' ); ?></p>
+		</td>
+	</tr>
+<?php
+}
+add_action( 'saade_edit_form_fields', 'ttv_taxonomy_edit_meta_field', 10, 2 );
 
 
-
-// A callback function to save our extra taxonomy field(s)  
-function save_taxonomy_custom_fields( $term_id ) {  
-    if ( isset( $_POST['term_meta'] ) ) {  
-        $t_id = $term_id;  
-        $term_meta = get_option( "taxonomy_term_$t_id" );  
-        $cat_keys = array_keys( $_POST['term_meta'] );  
-            foreach ( $cat_keys as $key ){  
-            if ( isset( $_POST['term_meta'][$key] ) ){  
-                $term_meta[$key] = $_POST['term_meta'][$key];  
-            }  
-        }  
-        //save the option array  
-        update_option( "taxonomy_term_$t_id", $term_meta );  
-    }  
+// Save extra taxonomy fields callback function.
+function save_taxonomy_custom_meta( $term_id ) {
+	if ( isset( $_POST['term_meta'] ) ) {
+		$t_id = $term_id;
+		$term_meta = get_option( "taxonomy_$t_id" );
+		$cat_keys = array_keys( $_POST['term_meta'] );
+		foreach ( $cat_keys as $key ) {
+			if ( isset ( $_POST['term_meta'][$key] ) ) {
+				$term_meta[$key] = $_POST['term_meta'][$key];
+			}
+		}
+		// Save the option array.
+		update_option( "taxonomy_$t_id", $term_meta );
+	}
 }  
-
-
-// Add the fields to the "presenters" taxonomy, using our callback function  
-add_action( 'presenters_edit_form_fields', 'presenters_taxonomy_custom_fields', 10, 2 );  
-
-// Save the changes made on the "presenters" taxonomy, using our callback function  
-add_action( 'edited_presenters', 'save_taxonomy_custom_fields', 10, 2 );  
+add_action( 'edited_saade', 'save_taxonomy_custom_meta', 10, 2 );  
+add_action( 'create_saade', 'save_taxonomy_custom_meta', 10, 2 );

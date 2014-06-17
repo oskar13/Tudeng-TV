@@ -134,18 +134,36 @@ function osa_save_data($post_id) {
 }
 
 
+
+
+
+
+
+
+
+
 add_filter( 'manage_edit-osa_columns', 'my_edit_osa_columns' ) ;
 
 function my_edit_osa_columns( $columns ) {
 
 	$columns = array(
 		'cb' => '<input type="checkbox" />',
-		'title' => __( 'Pealkiri' )
+		'title' => __( 'Pealkiri' ),
+		'taxonomy-saade' => __( 'Saade' ),
+		'date' => __( 'Kuupäev' )
 	);
 
 	return $columns;
 }
 
+
+/*
+//http://make.wordpress.org/core/2012/12/11/wordpress-3-5-admin-columns-for-custom-taxonomies/
+add_filter( 'manage_taxonomies_for_osa_columns', 'osa_type_columns' );
+function osa_type_columns( $taxonomies ) {
+    $taxonomies[] = 'osa-type';
+    return $taxonomies;
+}*/
 
 
 add_action( 'manage_osa_posts_custom_column', 'my_manage_osa_columns', 10, 2 );
@@ -194,7 +212,13 @@ function my_manage_osa_columns( $column, $post_id ) {
 
 
 
+add_action('do_meta_boxes', 'change_featured_osa_image_title');
+function change_featured_osa_image_title()
+{
+    remove_meta_box( 'postimagediv', 'osa', 'side' );
+    add_meta_box('postimagediv', __(''), 'post_thumbnail_meta_box', 'osa', 'normal', 'high');
 
+}
 
 //Filterzz HAXXX
 
@@ -203,7 +227,7 @@ function change_osa_title( $title ){
 	$screen = get_current_screen();
 
 	if ( $screen->post_type == 'osa' ) {
-		return 'Nimi';
+		return 'Osa Nimetus';
 	}
 }
 

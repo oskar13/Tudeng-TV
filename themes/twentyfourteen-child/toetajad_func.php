@@ -90,7 +90,7 @@ function wp_url_toetaja() {
 
 
 
-add_image_size( 'custom-post-list-image', X, Y, true );
+add_image_size( 'toetaja-image', 250, 250, true );
 
 $toetaja_prefix = 'toetaja_';
 
@@ -227,7 +227,7 @@ function my_edit_toetaja_columns( $columns ) {
 		'cb' => '<input type="checkbox" />',
 		'title' => __( 'Toetaja Nimi' ),
 		'toetaja_link' => __( 'Link' ),
-		'toetaja_toetaja_image' => __( 'Pilt' ),
+		'thumbnail' => __( 'Pilt' ),
 	);
 
 	return $columns;
@@ -266,6 +266,9 @@ function my_manage_toetaja_columns( $column, $post_id ) {
 				}
 				echo __('<a href="'.$toetaja_link.'">'.$link_string.'</a>');
 			break;
+		case 'thumbnail':
+			echo get_the_post_thumbnail( $post->ID, 'toetaja-image' );
+			break;
 		default :
 			break;
 	}
@@ -274,8 +277,13 @@ function my_manage_toetaja_columns( $column, $post_id ) {
 
 
 
-
-
+// Change the text and reposition featured image meta box.
+add_action('do_meta_boxes', 'change_featured_toetaja_image_title');
+function change_featured_toetaja_image_title()
+{
+    remove_meta_box( 'postimagediv', 'toetaja', 'side' );
+    add_meta_box('postimagediv', __('Toetaja pilt'), 'post_thumbnail_meta_box', 'toetaja', 'normal', 'high');
+}
 
 
 
