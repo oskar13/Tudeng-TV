@@ -6,10 +6,11 @@
 			<div id="news_border">
 				<div id="news_news">
 					<?php
-					$queryObject = new WP_Query( 'post_type=videouudis&posts_per_page=1' );
+					/*$queryObject = new WP_Query( 'post_type=videouudis&posts_per_page=1' );
 						// The Loop!
 							if ($queryObject->have_posts()) {
-								$queryObject->the_post();
+								$queryObject->the_post();*/
+								if (have_posts()) : while (have_posts()) : the_post();
 							?>
 
 								<h3><?php the_title(); ?></h3>
@@ -51,9 +52,10 @@
 								</ul>
 							
 							<?php
-							} else {
+							endwhile; endif;
+							/*} else {
 								echo "Ühtegi videouudist ei leitud!";
-							}
+							}*/
 							?>
 
 
