@@ -65,7 +65,7 @@ add_action('init', 'meeskond_init');
 			'capability_type' => 'post',
 			'hierarchical' => true,
 			'menu_position' => 23,
-			'supports' => array('title'/*, 'editor'*/),
+			'supports' => array('title' , 'thumbnail'/*, 'editor'*/),
 			'has_archive' => 'meeskond'
 		); 
 		register_post_type('meeskond',$meeskond_args);
@@ -398,3 +398,25 @@ function save_taxonomy_custom_meta( $term_id ) {
 }  
 add_action( 'edited_saade', 'save_taxonomy_custom_meta', 10, 2 );  
 add_action( 'create_saade', 'save_taxonomy_custom_meta', 10, 2 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('admin_head', 'my_custom_fonts');
+
+function my_custom_fonts() {
+  echo '<style>
+    .wp-post-image{
+    	max-width:100px;height:auto;
+    };
+  </style>';
+}

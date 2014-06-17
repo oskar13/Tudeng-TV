@@ -1,5 +1,7 @@
 <?php
 
+add_image_size( 'liige-image', 100, 100, true );
+
 $meeskond_prefix = 'meeskond_';
 
 $meeskond_meta_box = array(
@@ -29,13 +31,6 @@ $meeskond_meta_box = array(
 			'id' => $meeskond_prefix . 'link',
 			'type' => 'text',
 			'std' => 'http://'
-		),
-		array(
-			'name' => 'Pilt',
-			'desc' => 'Pildi üleslaadimiseks vali "Upload image" ja seejärel vali pilt meediateegist või lae uus pilt ülesse enda arvutist.',
-			'id' => $meeskond_prefix . 'meeskond_image',
-			'type' => 'image',
-			'std' => ''
 		)
 		
 	)
@@ -142,7 +137,7 @@ function my_edit_meeskond_columns( $columns ) {
 		'cb' => '<input type="checkbox" />',
 		'title' => __( 'Liikme Nimi' ),
 		'meeskond_link' => __( 'Link' ),
-		'meeskond_meeskond_image' => __( 'Pilt' ),
+		'thumbnail' => __( 'Pilt' ),
 	);
 
 	return $columns;
@@ -181,6 +176,9 @@ function my_manage_meeskond_columns( $column, $post_id ) {
 				}
 				echo __('<a href="'.$meeskond_link.'">'.$link_string.'</a>');
 			break;
+		case 'thumbnail':
+			echo get_the_post_thumbnail( $post->ID, 'liige-image' );
+			break;
 		default :
 			break;
 	}
@@ -188,6 +186,13 @@ function my_manage_meeskond_columns( $column, $post_id ) {
 
 
 
+
+add_action('do_meta_boxes', 'change_featured_liige_image_title');
+function change_featured_liige_image_title()
+{
+    remove_meta_box( 'postimagediv', 'meeskond', 'side' );
+    add_meta_box('postimagediv', __('Liikme Pilt'), 'post_thumbnail_meta_box', 'meeskond', 'normal', 'high');
+}
 
 
 

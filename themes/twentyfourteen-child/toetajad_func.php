@@ -114,13 +114,6 @@ $toetajad_meta_box = array(
 			'id' => $toetaja_prefix . 'link',
 			'type' => 'text',
 			'std' => 'http://'
-		),
-		array(
-			'name' => 'Pilt',
-			'desc' => 'Pildi üleslaadimiseks vali "Upload image" ja seejärel vali pilt meediateegist või lae uus pilt ülesse enda arvutist.',
-			'id' => $toetaja_prefix . 'toetaja_image',
-			'type' => 'image',
-			'std' => ''
 		)
 		
 	)
@@ -300,7 +293,7 @@ function change_toetaja_title( $title ){
 	}
 }
 
-add_filter( 'enter_title_here', 'change_toetaja_title' );
+add_filter( 'asdf', 'change_toetaja_title' );
 
 
 ?>

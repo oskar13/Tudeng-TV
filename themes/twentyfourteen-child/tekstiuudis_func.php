@@ -1,5 +1,7 @@
 <?php
 
+add_image_size( 'tekstiuudis-image', 255, 255, true );
+
 $tekstiuudis_prefix = 'tekstiuudis_';
 
 $tekstiuudis_meta_box = array(
@@ -120,8 +122,8 @@ function my_edit_tekstiuudis_columns( $columns ) {
 	$columns = array(
 		'cb' => '<input type="checkbox" />',
 		'title' => __( 'Pealkiri' ),
-		'tekstiuudis_autor' => __( 'Autor' ),
-		'tekstiuudis_tekstiuudis_image' => __( 'Pilt' ),
+		'author' => __( 'Autor' ),
+		'thumbnail' => __( 'Pilt' ),
 	);
 
 	return $columns;
@@ -159,6 +161,10 @@ function my_manage_tekstiuudis_columns( $column, $post_id ) {
 					$link_string = $tekstiuudis_autor;
 				}
 				echo __('<a href="'.$tekstiuudis_autor.'">'.$link_string.'</a>');
+			break;
+		case 'thumbnail':
+			echo get_the_post_thumbnail( $post->ID, 'tekstiuudis-image' );
+			
 			break;
 		default :
 			break;
