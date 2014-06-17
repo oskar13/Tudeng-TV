@@ -1,4 +1,17 @@
 <?php
+
+//Add support for custom header image:
+$args = array(
+	'flex-width'    => true,
+	'width'         => 999,
+	'flex-height'    => true,
+	'height'        => 500,
+	'default-image' => get_template_directory_uri() . '/images/logo.png',
+);
+add_theme_support( 'custom-header', $args );
+
+
+
 require 'toetajad_func.php';
 
 add_action('init', 'toetajad_init');
