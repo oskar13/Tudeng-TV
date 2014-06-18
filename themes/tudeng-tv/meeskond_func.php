@@ -1,6 +1,6 @@
 <?php
 
-add_image_size( 'liige-image', 100, 100, true );
+add_image_size( 'liige-image', 300, 300, true );
 
 $meeskond_prefix = 'meeskond_';
 

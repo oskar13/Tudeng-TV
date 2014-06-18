@@ -73,7 +73,7 @@ and Blueprint http://www.blueprintcss.org/
 
 /*General settings*/
 * {margin:0; padding:0;}
-html, body {height: 100%; width: 100%; min-width: 800px; font-family:Economica, sans-serif; font-size:16pt; white-space:nowrap;}
+html, body {height: 100%; width: 100%; min-width: 800px; font-family:Economica, sans-serif; font-size:16pt; /*white-space:nowrap;*/}
 a {text-decoration:none; color:#000;}
 #wrapper{position: relative; min-height: 100%;}
 #container {width:100%; margin:0 auto; padding-bottom:10em}

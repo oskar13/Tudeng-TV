@@ -22,6 +22,20 @@
 
 			</footer>
 		</div>
+
+
+<!-- Magnific Popup core CSS file -->
+<link rel="stylesheet" href=" <?php echo get_template_directory_uri(); ?>/magnific-popup/magnific-popup.css"> 
+
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+
+<!-- Magnific Popup core JS file -->
+<script src=" <?php echo get_template_directory_uri(); ?>/magnific-popup/jquery.magnific-popup.js"></script> 
+
+
+
+
 		<?php wp_footer(); ?>
 	</body>
 </html>
