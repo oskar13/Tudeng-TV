@@ -1,0 +1,196 @@
+/*
+Theme Name: Tudeng TV
+Theme URI: http://underscores.me/
+Author: Ifikad
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0-wpcom
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: tudeng-tv
+Domain Path: /languages/
+Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+ Tudeng TV is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+and Blueprint http://www.blueprintcss.org/
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+
+
+/*
+ *	HELP, WHAT DOES ALL THIS MEAN?
+ *
+ *	Relax, you're doing fine!
+ *	Ma olen kasutanud mitmesuguseid CSS selectoreid ja nippe, et asjad paika saada korralikult.
+ *	Kui hakata midagi ümber tegema, palun andke mulle enne sellest läbi FB või telefoni kaudu teada!
+ *	Igatahes, siin on mõned juhised:
+ *
+ *	Iga sektsiooni, tüki või komponendi olen pealkirjastanud,
+ *	kui CSS õigesti viidata, peaks toimima alati.
+ *
+ *	Mõned tip'id veel:
+ *	padding/margin/border/mis iganes lühivariant: TOP RIGHT BOTTOM LEFT;
+ *	See hoiab lihtsalt ruumi ja aega kokku, kui kirjutada margin-top, margin-bottom jne...
+ *	Lihtsalt lükka 0 või auto vahele, mida ei taha kasutada/lisada ning peaks toimima küll!
+ *
+ *	Üldised fondid on 'Economica' ja 'Daxline Pro'
+*/
+
+
+
+
+
+
+/*General settings*/
+* {margin:0; padding:0;}
+html, body {height: 100%; width: 100%; min-width: 800px; font-family:Economica, sans-serif; font-size:16pt; white-space:nowrap;}
+a {text-decoration:none; color:#000;}
+#wrapper{position: relative; min-height: 100%;}
+#container {width:100%; margin:0 auto; padding-bottom:10em}
+/*Repeating paragraphs/titles*/
+.clips p, .gridbox p {font-size:22pt; padding:0.5em 0 0 0.5em;}
+
+/*Header*/
+header {width:90%; margin:0 auto;}
+header img {padding:1.5em 0 0.5em}
+header span {float:right; margin:2em 2em 0 0;}
+header a:nth-child(2) {padding-left:1em;}
+
+
+
+/*Navigation menu*/
+nav {width:100%; text-align:center;}
+nav a {color:#000; font-size:20pt; text-decoration:none; transition:color 0.3s ease;}
+/*nav a {padding-right:3em;}*/
+nav li {padding-right:3em;display: inline;list-style: none;}
+nav a:last-of-type {padding-right:0em !important;}
+nav a:hover:nth-child(1) {color:#E2E2E2;/*First element isn't chosen*/}/*index*/
+nav a:hover:nth-child(2) {color:#11A9A7;}/*News*/
+nav a:hover:nth-child(3) {color:#5998D1;}/*Focus*/
+nav a:hover:nth-child(4) {color:#F5DA0B;}/*Archive*/
+nav a:hover:nth-child(5) {color:#FF93B4;}/*Team*/
+nav a:hover:nth-child(6) {color:#56FF9D;}/*Supporters*/
+nav a:hover:nth-child(7) {color:#FB9471;}/*Gallery*/
+nav a:hover:nth-child(8) {color:#E2E2E2;/*Find out what this should be*/}/*Contact*/
+hr {width:90%; margin:0.2em auto 0.5em auto; height:3px; background-color:#000; border:0;}
+
+
+
+/*Topics*/
+#topics {width:87.5%; margin:0 auto; text-align: center;}
+/*#topics div {margin:0.5em auto 0.5em auto;}*/
+#topics a {color:white; font-size: 24pt; font-weight: bold;}
+#topics-left {width:600px; height:496px; display: inline-block; margin: 0.5em auto 0.5em auto;}
+/*uudised*/
+#topics-left_top {background-color: #11A9A7; background-image: url("../images/kotl.jpg"); width: 600px;height: 300px; border-bottom: 15px solid #11A9A7;}
+#topics-left_top:hover{background-image: none;}
+#topics-left_bottom{width:100%; height:170px; margin-top: 1em}
+/*meeskond*/
+#topics-left_left {background-image: url("../images/kotl.jpg"); background-color:#FF93B4; width:290px; height:140px; float:left; border-bottom: 15px solid #FF93B4;}
+#topics-left_left:hover{background-image: none;}
+/*toetajad*/
+#topics-left_right {background-image: url("../images/kotl.jpg"); background-color:#56FF9D; width:290px; height:140px; float:right; border-bottom: 15px solid #56FF9D;}
+#topics-left_right:hover{background-image: none;}
+#topics-right {width:450px; display: inline-block; vertical-align: top; margin: 0.5em auto 0.5em 0.75em}
+/*fookus*/
+#topics-right_top {background-image: url("../images/kotl.jpg"); background-color:#5998D1; width:450px; height:225px; border-bottom: 15px solid #5998D1;}
+#topics-right_top:hover{background-image: none;}
+/*arhiiv*/
+#topics-right_bottom {background-image: url("../images/kotl.jpg");background-color:#F5DA0B; width:450px; height:225px; border-bottom: 15px solid #F5DA0B; margin-top: 0.4em;}
+#topics-right_bottom:hover{background-image: none;}
+
+/*Clips*/
+.clips {width:1000px; margin:1em auto 1em auto; background-color:rgba(150,150,150,0.5); white-space: nowrap; overflow-x:hidden;}
+.clips p {} /*<- vaata global settings*/
+.clips span {display:inline-block; margin:0.5em; width:275px; height:150px; background-color:#414141;}
+.arrow{width: 25px; height: 50px; position:absolute; padding: 65px 0 0 10px;}
+.arrow:hover{}
+
+/*Facebook*/
+
+#facebook{margin:0 auto; width:600px; height:600px;}
+
+/*Footer*/
+footer{position: absolute; bottom: 0; width: 100%; height: 8em; background-color: #E2E2E2; text-align: center;}
+#fmenu{font-weight: bold; text-align: center;}
+.fmenu:hover{text-decoration: underline;}
+#logo{padding: 1em 1em 0.5em 1em;}
+
+/*News*/
+#news_border{max-width: 1075px; height: 550px; background-color: rgba(17,169,167,0.5); margin: 0 auto;}
+#news_news{text-align: center;}
+#news_vid{background-color: black; margin: 50px; width: 800px; height:450px;}
+#news_clips{background-color:rgba(17,169,167,0.5)}
+#news_text{background-color:rgba(17,169,167,0.5)}
+
+/*Focus*/
+#focus_text{margin:1em auto; width:1075px; height:125px; white-space: normal; text-align: center;}
+#focus_clips{background-color:rgba(89,152,209,0.5)}
+#focus_border{max-width: 1075px; height: 550px; background-color: rgba(89,152,209,0.5); margin: 0 auto;}
+#focus_news{text-align: center;}
+#focus_vid{background-color: black; margin: 50px; width: 800px; height:450px;}
+#back_images{background-image: url("../images/vasak-800.png"), url("../images/parem-800.png"); background-position: left 200px, right 200px; background-repeat: no-repeat, no-repeat;}
+#focus_facebook{margin:2em auto; width:700px; height:400px; overflow-y: auto}
+.fb-comments{margin:0 auto;overflow-y: auto}
+.fb-like-box{margin:0 auto;}
+
+/*Archive*/
+#archive {width:90%; margin:0.5em auto 0.5em auto;}
+.gridbox {margin:0.5em;}
+.gridbox p {} /*<- vaata global settings*/
+.gridbox ul {list-style:none;}
+.gridbox li {margin:0 0 0 1em;}
+/*Archive2*/
+#archive_stack{width:80%; margin:0 auto; max-width:1075px;}
+.archive_list{height:170px; overflow-x: auto; overflow-y: hidden; white-space: nowrap;}
+.archive_header{margin: 1em 0 0.5em 1em;}
+.archive_video{background-color: black; margin-right: 4em; width: 200px; height: 150px; display: inline-block; white-space: normal;}
+.archive_text{background-color: black; margin-right: 4em; width: 200px; height: 150px; display: inline-block; white-space: normal;}
+
+
+/*Suporters*/
+
+/* FOURTH EFFECTS */
+#toetajad_intro{margin:0.5em auto; width:1000px; height:150px;white-space: normal; text-align: center;}
+#small_supporters{margin:0 auto;}
+.fourth-effect .mask { position:absolute; /* Center the mask */ top:25px; left:20px;	cursor:pointer; border-radius: 50px; border-width: 50px; display: inline-block; height: 100px; width: 100px; border: 50px solid rgba(0, 0, 0, 0.7);	-moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; opacity:0.5; visibility:visible; -moz-transform:scale(4);	-webkit-transform:scale(4);	-o-transform:scale(4); -ms-transform:scale(4); transform:scale(4); -moz-transition:all 0.3s ease-in-out; -webkit-transition:all 0.3s ease-in-out; -o-transition:all 0.3s ease-in-out; -ms-transition:all 0.3s ease-in-out; transition:all 0.3s ease-in-out;}
+.fourth-effect:hover .mask { opacity: 0;border: 0px solid rgba(0,0,0,0.7); visibility:hidden;}
+.view { width: 150px; height: 150px; margin: 0.33em; border: 1px solid #999; overflow: hidden; position: relative; text-align: center; box-shadow: 0px 0px 1px #aaa; cursor: default;display:block; float:left;}
+
+/*Contacts*/
+#contact_text{margin:1em auto; width:800px; height:150px; white-space: normal; text-align: center;}
+#contact_map_intro{margin:0 auto; width:500px; height:25px; text-align: center;}
+#googleMap{margin:0 auto; background-color:#414141; width:500px; height:380px;}
+
+
+
