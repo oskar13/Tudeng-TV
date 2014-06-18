@@ -294,7 +294,8 @@ add_action('init', 'meeskond_init');
 				'hierarchical' => true,
 				'menu_position' => 23,
 				'supports' => array('title', 'editor', 'thumbnail', 'excerpt' ),
-				'has_archive' => 'videouudis'
+				'has_archive' => 'videouudis',
+				'taxonomies' => array('post_tag')
 			); 
 			register_post_type('videouudis',$videouudis_args);
 		}
@@ -584,7 +585,7 @@ function my_custom_fonts() {
 function ttv_widgets_init() {
 
 	register_sidebar( array(
-		'name' => 'Viimati Lisatud Videouudised',
+		'name' => 'Ala videouudiste all',
 		'id' => 'viimati_lisatud_vid',
 		'before_widget' => '<div>',
 		'after_widget' => '</div>',
@@ -651,7 +652,10 @@ class ttv_Widget_Recent_Posts extends WP_Widget {
         <?php echo $before_widget; ?>
         <?php if ( $title ) echo $before_title . $title . $after_title; ?>
         <ul>
-        <?php while ( $r->have_posts() ) : $r->the_post(); ?>
+
+        <?php 
+        /*
+       	while ( $r->have_posts() ) : $r->the_post(); ?>
             <li>
                 <a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ? get_the_title() : get_the_ID() ); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a>
             <?php if ( $show_date ) : ?>
@@ -664,6 +668,47 @@ class ttv_Widget_Recent_Posts extends WP_Widget {
 <?php
         // Reset the global $the_post as this query will have stomped on it
         wp_reset_postdata();
+*/
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+// TTV - otsi välja samade tagidega postitused
+
+       $tags = wp_get_post_tags( get_the_ID() );
+       echo var_dump($tags);
+if ( ! empty( $tags ) ) {
+  // Create new query of related
+  $related = new WP_Query(
+  	array(
+  		'posts_per_page' => 5,
+  		'tag' => $tags[0]->slug,
+  		'orderby' => 'rand',
+  		'post_type'=> 'any'
+  	) );
+
+//
+  if( $related->have_posts() ) {
+  echo 'Related Posts';
+    while ($related->have_posts()) : $related->the_post(); ?>
+      <p>
+		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+      	<br />
+      	<?php the_post_thumbnail( 'videouudis-image' ); ?>
+      	<strong>Tags:</strong> <?php the_tags(); ?>
+      </p>
+      <?php
+    endwhile;
+  }
+}
+wp_reset_postdata();
+
+
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 
         endif;
 

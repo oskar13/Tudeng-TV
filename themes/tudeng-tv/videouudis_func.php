@@ -2,7 +2,7 @@
 
 
 
-add_image_size( 'videouudis-image', 177, 100, false );
+add_image_size( 'videouudis-image', 354, 200, false );
 
 $videouudis_prefix = 'videouudis_';
 

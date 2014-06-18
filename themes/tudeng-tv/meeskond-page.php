@@ -5,7 +5,7 @@ Template Name: Meeskond
 get_header(); ?>
 	<hr style="background-color: #FF93B4;">
 
-	<h1>Siia tuleb korralik html mis kuvab meekonna liikmeid:</h1>
+	<h1>Siia tuleb korralik html/CSS mis kuvab meekonna liikmeid:</h1>
 
 	<ul>
 		<?php
