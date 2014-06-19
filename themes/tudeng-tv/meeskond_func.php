@@ -30,7 +30,7 @@ $meeskond_meta_box = array(
 			'desc' => 'https://twitter.com/DogeTheDog',
 			'id' => $meeskond_prefix . 'link',
 			'type' => 'text',
-			'std' => 'http://'
+			'std' => ''
 		)
 		
 	)

@@ -16,7 +16,37 @@ Template Name: Videouudised
 							?>
 
 								<h3><?php the_title(); ?></h3>
-								<embed width="420" height="345"	src="<?php echo get_post_meta( get_the_ID(), 'videouudis_link', true ); ?>"	type="application/x-shockwave-flash"></embed>
+<?php
+
+
+$result = end(explode('=', get_post_meta( get_the_ID(), 'videouudis_link', true )));
+
+?>
+
+
+
+
+<div class="" id="ytplayer"></div>
+
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '450',
+      width: '800',
+      videoId: '<?php echo $result; ?>'
+    });
+  }
+</script>
+
 								<?php the_content(); ?>
 								<ul>
 									<?php
@@ -62,7 +92,7 @@ Template Name: Videouudised
 
 				<?php if ( dynamic_sidebar('viimati_lisatud_vid') ) : else : endif; ?>
 
-
+<!--
 				<div id="news_clips" class="clips">
 					<p>Viimati lisatud</p>
 					<span>Video 1</span>
@@ -84,6 +114,6 @@ Template Name: Videouudised
 					<span>Pilt ...</span>
 					<a href="arhiiv.php"><img class="arrow" src="images/arrow.png"></a>
 				</div>	
-		</div>	
+-->
 
 		<?php get_footer(); ?>	

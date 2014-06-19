@@ -90,7 +90,7 @@ function wp_url_toetaja() {
 
 
 
-add_image_size( 'toetaja-image', 150, 150, true );
+add_image_size( 'toetaja-image', 150, 150, false );
 
 $toetaja_prefix = 'toetaja_';
 

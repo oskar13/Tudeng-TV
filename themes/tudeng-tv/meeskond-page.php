@@ -32,7 +32,7 @@ get_header(); ?>
 						<?php
 						
 						$meta_filed = get_post_meta( get_the_ID(), 'meeskond_link', true );
-						if (!empty($meta_filed)) {
+						if (!empty($meta_filed) ) {
 						?>
 							<li>Meeskonna liikme link: <?php echo $meta_filed; ?> </li>
 						<?php

@@ -587,10 +587,10 @@ function ttv_widgets_init() {
 	register_sidebar( array(
 		'name' => 'Ala videouudiste all',
 		'id' => 'viimati_lisatud_vid',
-		'before_widget' => '<div>',
+		'before_widget' => '<div id="news_clips" class="clips">',
 		'after_widget' => '</div>',
-		'before_title' => '<h2 class="rounded">',
-		'after_title' => '</h2>'
+		'before_title' => '<p>',
+		'after_title' => '</p>'
 	) );
 }
 add_action( 'widgets_init', 'ttv_widgets_init' );
@@ -651,7 +651,7 @@ class ttv_Widget_Recent_Posts extends WP_Widget {
 ?>
         <?php echo $before_widget; ?>
         <?php if ( $title ) echo $before_title . $title . $after_title; ?>
-        <ul>
+
 
         <?php 
         /*
@@ -675,9 +675,10 @@ class ttv_Widget_Recent_Posts extends WP_Widget {
 /////////////////////////////////////////////////////////////
 // TTV - otsi välja samade tagidega postitused
 
-       $tags = wp_get_post_tags( get_the_ID() );
+
+    $current_post_ID = get_the_ID();
+       $tags = wp_get_post_tags( $current_post_ID );
        //echo var_dump($tags);
-       echo "<br />";
     $search_tags = array();
 
 	$length = count($tags);
@@ -688,7 +689,7 @@ class ttv_Widget_Recent_Posts extends WP_Widget {
 		}
 	}
 
-	echo "<p>Sisaldab tag-i: <c". var_dump($search_tags) . "</p>";
+	//echo "<p>Sisaldab tag-i: ". var_dump($search_tags) . "</p>";
 
 
 if ( ! empty( $tags ) ) {
@@ -702,20 +703,24 @@ if ( ! empty( $tags ) ) {
   	) );
 
 //
-  if( $related->have_posts() ) {
-    while ($related->have_posts()) : $related->the_post(); ?>
-      <p>
-		<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-      	<br />
-      	<?php the_post_thumbnail( 'videouudis-image' ); ?>
-      	<?php the_tags(); ?>
-      </p>
-      <?php
-    endwhile;
-  }
+	if( $related->have_posts() ) {
+		while ($related->have_posts()) : $related->the_post(); 
+		if ($current_post_ID != get_the_ID()) {?>
+		<div class="clips-container">
+			<a href="<?php the_permalink() ?>">
+				<?php the_post_thumbnail( 'videouudis-image' ); ?>
+			</a>
+				<span class="clip-title"><?php the_title(); ?></span>
+				<?php //the_tags(); ?>
+			</div>
+			<?php
+		}
+		endwhile;
+	}
 }
 wp_reset_postdata();
 
+echo $after_widget;
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////

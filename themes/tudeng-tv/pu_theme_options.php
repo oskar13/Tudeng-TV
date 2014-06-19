@@ -15,6 +15,16 @@
 
  			do_settings_sections('pu_theme_options.php');
  			?>
+
+
+ 			<script type='text/javascript'>
+	 			jQuery(document).ready(function($) {
+	 				$('.my-color-filed').wpColorPicker();
+	 			});
+ 			</script>
+ 			<input type="text" value="#bada55" class="my-color-field" data-default-color="#effeff" />
+
+
  			<p class="submit">  
  				<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />  
  			</p>  
@@ -71,9 +81,9 @@ function pu_validate_settings($input)
 		$newinput[$k] = trim($v);
 
 	// Check the input is a letter or a number
-		if(!preg_match('/^[A-Z0-9 _]*$/i', $v)) {
+		/*if(!preg_match('/^[A-Z0-9 _]*$/i', $v)) {
 			$newinput[$k] = '';
-		}
+		}*/
 	}
 
 	return $newinput;

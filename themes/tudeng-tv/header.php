@@ -9,7 +9,7 @@
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" />
+		<!--<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" />-->
 		
 		<link href="http://fonts.googleapis.com/css?family=Economica:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -29,6 +29,7 @@
 				</span>
 			</header>
 			<!--Navigation bar (animated with CSS3)-->
+			<!--
 			<nav>
 				<a href="index.php">Avaleht</a>
 				<a href="uudised.php">Uudised</a>
@@ -39,7 +40,7 @@
 				<a href="galerii.php">Galerii</a>
 				<a href="kontakt.php">Kontakt</a>
 			</nav>
-
+			-->
 		<nav>
 
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>

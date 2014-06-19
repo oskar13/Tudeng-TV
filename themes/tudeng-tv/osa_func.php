@@ -4,18 +4,11 @@ $osa_prefix = 'osa_';
 
 $osa_meta_box = array(
 	'id' => 'osa-meta-box',
-	'title' => 'Liikme andmed',
+	'title' => 'Osa info',
 	'page' => 'osa',
 	'context' => 'normal',
 	'priority' => 'high',
 	'fields' => array(
-		array(
-			'name' => 'Pealkiri',
-			'desc' => 'Mehaanik;Kaameramees;Jumestaja',
-			'id' => $osa_prefix . 'title',
-			'type' => 'textarea',
-			'std' => ''
-		),
 		array(
 			'name' => 'Osa kirjeldus',
 			'desc' => '',
@@ -24,17 +17,17 @@ $osa_meta_box = array(
 			'std' => ''
 		),
 		array(
+			'name' => 'Video URL',
+			'desc' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+			'id' => $videouudis_prefix . 'link',
+			'type' => 'text',
+			'std' => 'http://'
+		),
+		array(
 			'name' => 'Kestvus',
 			'desc' => '',
 			'id' => $osa_prefix . 'time',
 			'type' => 'textarea',
-			'std' => ''
-		),
-		array(
-			'name' => 'Pilt',
-			'desc' => 'Pildi üleslaadimiseks vali "Upload image" ja seejärel vali pilt meediateegist või lae uus pilt ülesse enda arvutist.',
-			'id' => $osa_prefix . 'osa_image',
-			'type' => 'image',
 			'std' => ''
 		)
 		

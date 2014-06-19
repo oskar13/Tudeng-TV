@@ -18,10 +18,9 @@
 					<a class="fmenu" href="galerii.php">Galerii</a> |
 					<a class="fmenu" href="kontakt.php">Kontakt</a>
 				</div>
-			<footer>
 
 			</footer>
-		</div>
+
 
 
 <!-- Magnific Popup core CSS file -->
