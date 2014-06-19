@@ -676,26 +676,39 @@ class ttv_Widget_Recent_Posts extends WP_Widget {
 // TTV - otsi välja samade tagidega postitused
 
        $tags = wp_get_post_tags( get_the_ID() );
-       echo var_dump($tags);
+       //echo var_dump($tags);
+       echo "<br />";
+    $search_tags = array();
+
+	$length = count($tags);
+	for ($i = 0; $i < $length; $i++) {
+		//print $tags[$i]->slug;
+		if (!empty($tags[$i]->slug)) {
+			$search_tags[$i] =  $tags[$i]->slug;
+		}
+	}
+
+	echo "<p>Sisaldab tag-i: <c". var_dump($search_tags) . "</p>";
+
+
 if ( ! empty( $tags ) ) {
   // Create new query of related
   $related = new WP_Query(
   	array(
   		'posts_per_page' => 5,
-  		'tag' => $tags[0]->slug,
+  		'tag_slug__in' => $search_tags/*$tags[0]->slug*/, // Containse tags in array - $search_tags
   		'orderby' => 'rand',
   		'post_type'=> 'any'
   	) );
 
 //
   if( $related->have_posts() ) {
-  echo 'Related Posts';
     while ($related->have_posts()) : $related->the_post(); ?>
       <p>
-		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+		<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
       	<br />
       	<?php the_post_thumbnail( 'videouudis-image' ); ?>
-      	<strong>Tags:</strong> <?php the_tags(); ?>
+      	<?php the_tags(); ?>
       </p>
       <?php
     endwhile;
