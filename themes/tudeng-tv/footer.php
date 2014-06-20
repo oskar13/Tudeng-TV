@@ -2,9 +2,9 @@
 			<footer>
 				<div id="logo">
 					<span>
-						<a href="http://www.facebook.com/tudeng.tv" target="blank"><img src="images/facebook.png" alt=""></a>
-						<a href="http://www.youtube.com/user/tudengTV" target="blank"><img src="images/youtube.png" alt=""></a>
-						<a href="http://instagram.com/tudengtv" target="blank"><img src="images/instagram.png" alt=""></a>
+						<a href="http://www.facebook.com/tudeng.tv" target="blank"><img src="<?php echo get_template_directory_uri(); ?>/images/facebook.png" alt=""></a>
+						<a href="http://www.youtube.com/user/tudengTV" target="blank"><img src="<?php echo get_template_directory_uri(); ?>/images/youtube.png" alt=""></a>
+						<a href="http://instagram.com/tudengtv" target="blank"><img src="<?php echo get_template_directory_uri(); ?>/images/instagram.png" alt=""></a>
 					</span>
 				</div>
 
@@ -21,7 +21,7 @@
 
 			</footer>
 
-
+		</div>
 
 <!-- Magnific Popup core CSS file -->
 <link rel="stylesheet" href=" <?php echo get_template_directory_uri(); ?>/magnific-popup/magnific-popup.css"> 

@@ -104,7 +104,9 @@ nav a:hover:nth-child(7) {color:#FB9471;}/*Gallery*/
 nav a:hover:nth-child(8) {color:#E2E2E2;/*Find out what this should be*/}/*Contact*/
 hr {width:90%; margin:0.2em auto 0.5em auto; height:3px; background-color:#000; border:0;}
 
+/*Index*/
 
+#index_news_ticker{height:600px; width:300px; background-color:#E2E2E2; float: right;}
 
 /*Topics*/
 #topics {width:87.5%; margin:0 auto; text-align: center;}
@@ -113,21 +115,27 @@ hr {width:90%; margin:0.2em auto 0.5em auto; height:3px; background-color:#000; 
 #topics-left {width:600px; height:496px; display: inline-block; margin: 0.5em auto 0.5em auto;}
 /*uudised*/
 #topics-left_top {background-color: #11A9A7; background-image: url("../images/kotl.jpg"); width: 600px;height: 300px; border-bottom: 15px solid #11A9A7;}
-#topics-left_top:hover{background-image: none;}
-#topics-left_bottom{width:100%; height:170px; margin-top: 1em}
+#topics-left_top_bg{width:100%; height:100%; left:0; top:0;}
+#topics-left_top_bg:hover{background-color:rgba(17,169,167,0.9);}
 /*meeskond*/
+#topics-left_bottom{width:100%; height:170px; margin-top: 1em;}
 #topics-left_left {background-image: url("../images/kotl.jpg"); background-color:#FF93B4; width:290px; height:140px; float:left; border-bottom: 15px solid #FF93B4;}
-#topics-left_left:hover{background-image: none;}
+#topics-left_left_bg{width:100%; height:100%; left:0; top:0;}
+#topics-left_left_bg:hover{background-color:rgba(255,147,180,0.9);}
 /*toetajad*/
 #topics-left_right {background-image: url("../images/kotl.jpg"); background-color:#56FF9D; width:290px; height:140px; float:right; border-bottom: 15px solid #56FF9D;}
-#topics-left_right:hover{background-image: none;}
-#topics-right {width:450px; display: inline-block; vertical-align: top; margin: 0.5em auto 0.5em 0.75em}
+#topics-left_right_bg{width:100%; height:100%; left:0; top:0;}
+#topics-left_right_bg:hover{background-color:rgba(86,255,157,0.9);}
 /*fookus*/
+#topics-right {width:450px; display: inline-block; vertical-align: top; margin: 0.5em auto 0.5em 0.75em}
 #topics-right_top {background-image: url("../images/kotl.jpg"); background-color:#5998D1; width:450px; height:225px; border-bottom: 15px solid #5998D1;}
-#topics-right_top:hover{background-image: none;}
+#topics-right_top_bg{width:100%; height:100%; left:0; top:0;}
+#topics-right_top_bg:hover{background-color:rgba(89,152,209,0.9);}
 /*arhiiv*/
 #topics-right_bottom {background-image: url("../images/kotl.jpg");background-color:#F5DA0B; width:450px; height:225px; border-bottom: 15px solid #F5DA0B; margin-top: 0.4em;}
-#topics-right_bottom:hover{background-image: none;}
+#topics-right_bottom_bg {width:100%; height:100%; left:0; top:0;}
+#topics-right_bottom_bg:hover {background-color:rgba(245,218,11,0.9);}
+
 
 /*Clips*/
 .clips {width:1000px; margin:1em auto 1em auto; background-color:rgba(150,150,150,0.5); white-space: nowrap; overflow-x:hidden;}
@@ -162,17 +170,18 @@ footer{position: absolute; bottom: 0; width: 100%; height: 8em; background-color
 #news_vid{background-color: black; margin: 50px; width: 800px; height:450px;}
 #news_clips{background-color:rgba(17,169,167,0.5)}
 #news_text{background-color:rgba(17,169,167,0.5)}
+#news_ticker{height:400px; width:300px; background-color:#E2E2E2; float: right; margin:25px;}
 
 /*Focus*/
 #focus_text{margin:1em auto; width:1075px; height:125px; white-space: normal; text-align: center;}
 #focus_clips{background-color:rgba(89,152,209,0.5)}
-#focus_border{max-width: 1075px; height: 550px; background-color: rgba(89,152,209,0.5); margin: 0 auto;}
+#focus_border{max-width: 1000px; height: 550px; background-color: rgba(89,152,209,0.5); margin: 0 auto;}
 #focus_news{text-align: center;}
-#focus_vid{background-color: black; margin: 50px; width: 800px; height:450px;}
+#focus_vid{background-color: black; margin: 25px 10px 10px 10px; width: 950px; height:500px;}
 #back_images{background-image: url("../images/vasak-800.png"), url("../images/parem-800.png"); background-position: left 200px, right 200px; background-repeat: no-repeat, no-repeat;}
 #focus_facebook{margin:2em auto; width:700px; height:400px; overflow-y: auto}
 .fb-comments{margin:0 auto;overflow-y: auto}
-.fb-like-box{margin:0 auto;}
+.fb-like-box{margin:0 auto; float:left;}
 
 /*Archive*/
 #archive {width:90%; margin:0.5em auto 0.5em auto;}
@@ -202,5 +211,9 @@ footer{position: absolute; bottom: 0; width: 100%; height: 8em; background-color
 #contact_map_intro{margin:0 auto; width:500px; height:25px; text-align: center;}
 #googleMap{margin:0 auto; background-color:#414141; width:500px; height:380px;}
 
+/*404*/
+#pnf {max-width: 1075px; margin: 0 auto; text-align: center;}
+#pnf1 {float:left; margin-top: 15%;}
+#pnf2 {float:center; margin-top: 0%;}
 
 
