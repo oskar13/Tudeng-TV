@@ -645,9 +645,9 @@ class ttv_Widget_Recent_Posts extends WP_Widget {
         if ( ! $number )
             $number = 10;
         $show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
-
+/*
         $r = new WP_Query( apply_filters( 'widget_posts_args', array( 'posts_per_page' => $number, 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true ) ) );
-        if ($r->have_posts()) :
+        if ($r->have_posts()) :*/
 ?>
         <?php echo $before_widget; ?>
         <?php if ( $title ) echo $before_title . $title . $after_title; ?>
@@ -696,7 +696,7 @@ if ( ! empty( $tags ) ) {
   // Create new query of related
   $related = new WP_Query(
   	array(
-  		'posts_per_page' => 5,
+  		'posts_per_page' => $number,
   		'tag_slug__in' => $search_tags/*$tags[0]->slug*/, // Containse tags in array - $search_tags
   		'orderby' => 'rand',
   		'post_type'=> 'any'
@@ -728,7 +728,6 @@ echo $after_widget;
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
-        endif;
 
         $cache[$args['widget_id']] = ob_get_flush();
         wp_cache_set('widget_recent_posts', $cache, 'widget');
@@ -749,7 +748,7 @@ echo $after_widget;
     }
 
     function flush_widget_cache() {
-        wp_cache_delete('widget_recent_posts', 'widget');
+        wp_cache_delete('ttv_Widget_Recent_Posts', 'widget');
     }
 
     function form( $instance ) {
