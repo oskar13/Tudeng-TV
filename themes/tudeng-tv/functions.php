@@ -401,52 +401,112 @@ add_action('init', 'meeskond_init');
 		    register_setting( 'pu_theme_options', 'pu_theme_options', 'pu_validate_settings' );
 
 		    // Add settings section
-		    add_settings_section( 'pu_text_section', 'Section 1', 'pu_display_section', 'pu_theme_options.php' );
+		    add_settings_section( 'pu_text_section', 'Teise taseme pealkirjade omadused', 'pu_display_section', 'pu_theme_options.php' );
 
 		    // Create textbox field
 		    $field_args = array(
 		      'type'      => 'text',
 		      'id'        => 'pu_textbox',
 		      'name'      => 'pu_textbox',
-		      'desc'      => 'Example of textbox description',
+		      'desc'      => '',
 		      'std'       => '',
 		      'label_for' => 'pu_textbox',
 		      'class'     => 'css_class'
 		    );
 
-		    add_settings_field( 'example_textbox', 'Example Textbox', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
+		    //add_settings_field( 'example_textbox', 'Font', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
+
+			
+			
+			
+
+			
+			
+			add_settings_field(
+			'Font',
+			'Font',
+			'sandbox_select_element_callback',
+			'pu_theme_options.php',
+			'pu_text_section'
+		);
+			
+			
+			
+			
+			
+			
+			
 
 		    // Create textbox field
 		    $field_args = array(
 		      'type'      => 'text',
 		      'id'        => 'pu_textbox3',
 		      'name'      => 'pu_textbox3',
-		      'desc'      => 'Example of textbox description3',
+		      'desc'      => 'Näited: 2em, 32px;',
 		      'std'       => '',
 		      'label_for' => 'pu_textbox3',
 		      'class'     => 'css_class3'
 		    );
 
-		    add_settings_field( 'example_textbox3', 'Example Textbox', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
+		    add_settings_field( 'example_textbox3', 'Suurus', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section', $field_args );
 
-		    add_settings_section( 'pu_text_section2', 'Section 2', 'pu_display_section', 'pu_theme_options.php' );
+		    add_settings_section( 'pu_text_section2', 'Linkide värv', 'pu_display_section', 'pu_theme_options.php' );
 
 		    $field_args = array(
 		      'type'      => 'text',
 		      'id'        => 'pu_textbox2',
 		      'name'      => 'pu_textbox2',
-		      'desc'      => 'Example of textbox description2',
+		      'desc'      => 'Näide: #333333',
 		      'std'       => '',
 		      'label_for' => 'pu_textbox2',
 		      'class'     => 'css_class2'
 		    );
 
-		    add_settings_field( 'example_textbox2', 'Example Textbox2', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section2', $field_args );
+		    add_settings_field( 'example_textbox2', 'Värvikood', 'pu_display_setting', 'pu_theme_options.php', 'pu_text_section2', $field_args );
+			
+			$field_args = array(
+		      'type'      => 'checkbox',
+		      'id'        => 'example_checkbox2'
+		    );
+			
+			add_settings_field(
+				'example_checkbox2',
+				'Kuva joont lingi all',
+				'pu_display_setting',
+				'pu_theme_options.php',
+				'pu_text_section2',
+				$field_args 
+			);
+			
 		}
 
+// Custom callbacks
+function sandbox_checkbox_element_callback() {
+ 
+    $options = get_option( 'sandbox_theme_input_examples' );
+     
+    $html = '<input type="checkbox" id="example_checkbox2" name="sandbox_theme_input_examples[checkbox_example]" />';
+    $html .= '<label for="checkbox_example"></label>';
+     
+    echo $html;
+ 
+} // end sandbox_checkbox_element_callback
 
 
-
+function sandbox_select_element_callback() {
+ 
+    $options = get_option( 'sandbox_theme_input_examples' );
+     
+    $html = '<select id="font_options" name="sandbox_theme_input_examples[font_options]">';
+        $html .= '<option value="default">Vali sobiv font...</option>';
+        $html .= '<option value="Open Sans"' . selected( $options['font_options'], 'Open Sans', false) . '>Open Sans</option>';
+        $html .= '<option value="Arial"' . selected( $options['font_options'], 'Arial', false) . '>Arial</option>';
+        $html .= '<option value="Comic Sans MS"' . selected( $options['font_options'], 'Comic Sans MS', false) . '>Comic Sans MS</option>';
+    $html .= '</select>';
+     
+    echo $html;
+ 
+} // end sandbox_radio_element_callback
 
 
 
@@ -696,7 +756,7 @@ if ( ! empty( $tags ) ) {
   // Create new query of related
   $related = new WP_Query(
   	array(
-  		'posts_per_page' => $number,
+  		'posts_per_page' => 3,
   		'tag_slug__in' => $search_tags/*$tags[0]->slug*/, // Containse tags in array - $search_tags
   		'orderby' => 'rand',
   		'post_type'=> 'any'

@@ -28,7 +28,7 @@ get_header(); ?>
 							?>
 								<div class="view fourth-effect"> 
 
-									<a href="#" title="<?php the_title(); ?>"><?php the_post_thumbnail( 'toetaja-image' ); ?><?php the_title(); ?></a>  
+									<a href="<?php echo get_post_meta( get_the_ID(), 'toetaja_link', true ); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail( 'toetaja-image' ); ?><?php the_title(); ?></a>  
 
 									<?php
 									/*

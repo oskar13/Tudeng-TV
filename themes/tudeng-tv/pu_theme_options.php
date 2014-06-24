@@ -17,12 +17,6 @@
  			?>
 
 
- 			<script type='text/javascript'>
-	 			jQuery(document).ready(function($) {
-	 				$('.my-color-filed').wpColorPicker();
-	 			});
- 			</script>
- 			<input type="text" value="#bada55" class="my-color-field" data-default-color="#effeff" />
 
 
  			<p class="submit">  
@@ -54,10 +48,18 @@ function pu_display_setting($args)
 
 	switch ( $type ) {  
 		case 'text':  
-		$options[$id] = stripslashes($options[$id]);  
-		$options[$id] = esc_attr( $options[$id]);  
-		echo "<input class='regular-text$class' type='text' id='$id' name='" . $option_name . "[$id]' value='$options[$id]' />";  
-		echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";  
+			$options[$id] = stripslashes($options[$id]);  
+			$options[$id] = esc_attr( $options[$id]);  
+			echo "<input class='regular-text$class' type='text' id='$id' name='" . $option_name . "[$id]' value='$options[$id]' />";  
+			echo ($desc != '') ? "<br /><span class='description'>$desc</span>" : "";  
+		break;
+		case 'checkbox':
+			$options = get_option( 'sandbox_theme_input_examples' );
+     
+			$html = '<input type="checkbox" id="checkbox_example" name="sandbox_theme_input_examples[checkbox_example]" />';
+			$html .= '<label for="checkbox_example"></label>';
+			 
+			echo $html;
 		break;  
 	}
 }

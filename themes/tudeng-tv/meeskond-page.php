@@ -5,9 +5,10 @@ Template Name: Meeskond
 get_header(); ?>
 	<hr style="background-color: #FF93B4;">
 
-	<h1>Siia tuleb korralik html/CSS mis kuvab meekonna liikmeid:</h1>
+	<div style="width: 90%; margin: 0 auto;">
 
-	<ul>
+	<h2 style="margin-bottom: 1.4em;">Meeskond</h2>
+	
 		<?php
 		$queryObject = new WP_Query( 'post_type=meeskond&posts_per_page=999' );
 		// The Loop!
@@ -34,7 +35,7 @@ get_header(); ?>
 						$meta_filed = get_post_meta( get_the_ID(), 'meeskond_link', true );
 						if (!empty($meta_filed) ) {
 						?>
-							<li>Meeskonna liikme link: <?php echo $meta_filed; ?> </li>
+							<li>Email: <?php echo $meta_filed; ?> </li>
 						<?php
 						}
 
@@ -48,7 +49,7 @@ get_header(); ?>
 						$meta_filed = get_post_meta( get_the_ID(), 'meeskond_desc', true );
 						if (!empty($meta_filed)) {
 						?>
-							<li>Liikme kirjeldus: <?php echo $meta_filed; ?> </li>
+							<li>Telefon: <?php echo $meta_filed; ?> </li>
 						<?php
 						}
 						?>
@@ -62,8 +63,10 @@ get_header(); ?>
 		<?php
 			}
 		?>
-	</ul>
 
+
+	
+</div>
 
 <?php
 /* Example HTML

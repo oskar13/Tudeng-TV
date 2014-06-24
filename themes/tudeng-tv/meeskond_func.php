@@ -13,21 +13,21 @@ $meeskond_meta_box = array(
 	'fields' => array(
 		array(
 			'name' => 'Liikme töökohad',
-			'desc' => 'Mehaanik;Kaameramees;Jumestaja',
+			'desc' => 'Tudeng TV juhataja, Kaameramees',
 			'id' => $meeskond_prefix . 'jobs',
 			'type' => 'textarea',
 			'std' => ''
 		),
 		array(
-			'name' => 'Liikme iseloomustus',
+			'name' => 'Telefon',
 			'desc' => '',
 			'id' => $meeskond_prefix . 'desc',
 			'type' => 'textarea',
 			'std' => ''
 		),
 		array(
-			'name' => 'URL',
-			'desc' => 'https://twitter.com/DogeTheDog',
+			'name' => 'Email',
+			'desc' => 'example@example.com',
 			'id' => $meeskond_prefix . 'link',
 			'type' => 'text',
 			'std' => ''

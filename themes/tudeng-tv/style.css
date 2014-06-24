@@ -165,7 +165,7 @@ footer{position: absolute; bottom: 0; width: 100%; height: 8em; background-color
 #logo{padding: 1em 1em 0.5em 1em;}
 
 /*News*/
-#news_border{max-width: 1075px; height: 550px; background-color: rgba(17,169,167,0.5); margin: 0 auto;}
+#news_border{max-width: 1075px; padding: 10px 0; background-color: rgba(17,169,167,0.5); margin: 0 auto;}
 #news_news{text-align: center;}
 #news_vid{background-color: black; margin: 50px; width: 800px; height:450px;}
 #news_clips{background-color:rgba(17,169,167,0.5)}
